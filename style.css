@@ -690,6 +690,55 @@ symbol { overflow: visible; }
   text-shadow: 0 0 12px rgba(59, 120, 240, .7);
 }
 
+
+/* ---------- Presente / Pix ---------- */
+.pix {
+  max-width: 36rem;
+  margin-inline: auto;
+  padding: 2rem 1.5rem 2.1rem;
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+.pix__text { max-width: 26rem; font-size: 1.1rem; color: var(--text); }
+
+.pix__box {
+  width: 100%;
+  max-width: 26rem;
+  display: grid;
+  gap: .3rem;
+  padding: .9rem 1rem;
+  border: 1.5px dashed rgba(158, 230, 192, .7);
+  border-radius: 16px;
+  background: rgba(27, 138, 92, .12);
+}
+.pix__label {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--green-soft);
+}
+.pix__key {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.05rem;
+  color: #fff;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.pix__key.is-empty {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  user-select: none;
+}
+.pix__name { font-size: .95rem; color: var(--muted); }
+.pix__status { min-height: 1.5em; font-size: .95rem; color: var(--green-soft); }
+.pix .btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; filter: none; box-shadow: none; }
+
+
 /* ---------- Rodapé ---------- */
 .footer {
   position: relative;

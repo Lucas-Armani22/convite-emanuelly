@@ -17,6 +17,13 @@ const WHATSAPP_NUMBER = "5517988461279";
 const WHATSAPP_MESSAGE =
   "Olá! Estou entrando em contato para confirmar minha presença na festa de 15 anos da Emanuelly, no dia 14/10.";
 
+
+// CHAVE PIX para presentes. Cole aqui a chave (CPF, e-mail, telefone ou chave aleatória).
+// Enquanto estiver vazio, o convite mostra "Chave Pix em breve" e o botão de copiar fica desativado.
+const PIX_KEY = "";
+
+// (Opcional) Nome do favorecido, exibido abaixo da chave. Ex.: "Maria da Silva"
+const PIX_NAME = "";
 /* --------------------------------------------------------- */
 
 (function () {
@@ -144,5 +151,52 @@ const WHATSAPP_MESSAGE =
         }
       });
     }
+  }
+
+  /* ---------- Pix (presente) ---------- */
+  var pixKeyEl = document.getElementById("pix-key");
+  var pixNameEl = document.getElementById("pix-name");
+  var pixCopyBtn = document.getElementById("pix-copy");
+  var pixStatus = document.getElementById("pix-status");
+  var pixKey = String(PIX_KEY).trim();
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    // Alternativa para navegadores antigos ou páginas sem HTTPS
+    return new Promise(function (resolve, reject) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      area.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+      document.body.removeChild(area);
+      ok ? resolve() : reject(new Error("copy failed"));
+    });
+  }
+
+  if (pixKeyEl && pixCopyBtn && pixKey) {
+    pixKeyEl.textContent = pixKey;
+    pixKeyEl.classList.remove("is-empty");
+    pixCopyBtn.disabled = false;
+
+    if (pixNameEl && String(PIX_NAME).trim()) {
+      pixNameEl.textContent = "Favorecido: " + String(PIX_NAME).trim();
+      pixNameEl.hidden = false;
+    }
+
+    pixCopyBtn.addEventListener("click", function () {
+      copyText(pixKey).then(function () {
+        pixStatus.textContent = "Chave Pix copiada! Agora é só colar no app do seu banco.";
+      }).catch(function () {
+        pixStatus.textContent = "Não foi possível copiar automaticamente. Selecione a chave e copie manualmente.";
+      });
+    });
   }
 })();
