@@ -20,10 +20,10 @@ const WHATSAPP_MESSAGE =
 
 // CHAVE PIX para presentes. Cole aqui a chave (CPF, e-mail, telefone ou chave aleatória).
 // Enquanto estiver vazio, o convite mostra "Chave Pix em breve" e o botão de copiar fica desativado.
-const PIX_KEY = "";
+const PIX_KEY = "17988461279";
 
 // (Opcional) Nome do favorecido, exibido abaixo da chave. Ex.: "Maria da Silva"
-const PIX_NAME = "";
+const PIX_NAME = "Lucas Armani Ribeiro";
 /* --------------------------------------------------------- */
 
 (function () {
